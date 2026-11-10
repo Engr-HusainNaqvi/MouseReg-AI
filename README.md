@@ -1,6 +1,6 @@
 # MouseReg-AI: Multimodal 3D MRI ↔ CT Registration for Orthotopic Breast-Cancer Mouse Models
 
-**Project 11 · Husain Naqvi · 2026** · preclinical cancer imaging · [findings write-up](docs/FINDINGS.md) · [figure gallery](https://engr-husainnaqvi.github.io/MouseReg-AI/)
+**Project 11 · Husain Naqvi · 2026** · preclinical cancer imaging · [findings write-up](docs/FINDINGS.md) · [figure gallery](https://engr-husainnaqvi.github.io/MouseReg-AI/) · [live app](https://mousereg-studio.streamlit.app/)
 
 Orthotopic breast-cancer mice are imaged with **T2w MRI** (tumour, necrosis, soft tissue) and **micro-CT** (bone, lungs, attenuation). Fusing the two scans is hard for three reasons:
 - the animal is moved between scanners on a transfer bed, which shifts and rotates it;
@@ -78,6 +78,8 @@ Over all 58 test pairs it registers a mouse in **2 s with 0.69 mm dense error an
 The full problem statement, the rationale for each candidate and hybrid, the chosen methodology, the abstract and the limitations are in **[docs/FINDINGS.md](docs/FINDINGS.md)**.
 
 ## Interactive app: MouseReg Studio
+
+**Live app:** https://mousereg-studio.streamlit.app/ (MouseReg Studio; runs the pipeline on CPU on held-out demo mice)
 
 The app is in the private repository. You pick a held-out test animal (or upload your own CT + MRI volumes) and run the pipeline on CPU. You can then inspect axial, coronal or sagittal slices, side by side or as a checkerboard or colour overlay. The app shows dense TRE, tumour Dice and folding against the ground truth, and lets you download the warped MRI and the mapping.
 
