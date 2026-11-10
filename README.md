@@ -47,6 +47,7 @@ Over all 58 test pairs it registers a mouse in **2 s with 0.69 mm dense error an
   - Most of the gain comes from MIND-SSC instance optimisation rather than the network.
   - Dice-only weak supervision improved overlap but barely improved geometric accuracy.
   - B-spline FFD improved the tumour but worsened the whole-body TRE.
+  - Refinement lowers tumour Dice on 20 of 58 pairs (mean −0.026), even though whole-body TRE improves. The tumour position stays accurate, but its boundary shape is slightly smoothed.
 
 ## Visual tour
 

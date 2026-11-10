@@ -129,6 +129,12 @@ Paired Wilcoxon signed-rank tests on scan-level means (n = 29 scans) compare the
   - But it *worsened* the dense TRE (1.31 vs 1.12 mm for rigid) and folded tissue.
   - The likely reason: one global joint histogram (mutual information) fits poorly with a T2w↔CT mapping that is non-monotonic and differs per tissue. MIND-SSC uses local self-similarity, which is preserved across modalities.
 - **Weak (Dice) supervision improved overlap but barely improved geometric accuracy** (0.93 → 0.90 mm TRE). Only the added dense synthetic-flow loss moved TRE, to 0.86 mm. Dice is a weak proxy for correspondence inside homogeneous organs.
+- **Refinement trades a little tumour-boundary overlap for whole-body accuracy on some animals.**
+  - Across the 58 pairs, the 50-iteration MIND-SSC refinement improves tumour Dice on average (+0.022) and tumour TRE (−0.155 mm).
+  - On 20 of 58 pairs, however, tumour Dice *drops* (mean −0.026, worst −0.105), while dense TRE still improves by 0.14 mm on those pairs.
+  - On most of those 20 pairs the tumour *position* error does not get worse. Tumour TRE worsens on only 9 of 58 pairs overall, so the loss is in boundary shape, not localisation.
+  - A plausible cause: the global, unweighted MIND-SSC objective has no tumour-specific term, so it smooths the small, homogeneous tumour boundary.
+  - For tumour-volume work, inspect the tumour contour after refinement. A tumour-weighted refinement loss is a natural next step.
 - **The oracle row is the measurement ceiling.** Even a perfect mapping gives tumour Dice 0.97 and HD95 0.25 mm, because nearest-neighbour label resampling loses a few percent.
 
 ## 6. Best methodology and justification
