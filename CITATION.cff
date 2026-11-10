@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you refer to this work, please cite it as below."
+title: "MouseReg-AI: Multimodal 3D MRI-CT Registration for Orthotopic Breast Cancer Mouse Models"
+authors:
+  - family-names: Naqvi
+    given-names: Husain
+version: 1.0.0
+date-released: 2026-11-11
+license: LicenseRef-All-Rights-Reserved
+repository-code: "https://github.com/Engr-HusainNaqvi/MouseReg-AI"
+url: "https://engr-husainnaqvi.github.io/MouseReg-AI/"
+keywords: [image registration, multimodal registration, MRI, micro-CT, preclinical imaging, orthotopic breast cancer, mouse model, diffeomorphic, VoxelMorph, MIND-SSC, instance optimisation, ANTs]
+references:
+  - type: article
+    authors:
+      - family-names: Rosenhain
+        given-names: Stefanie
+    title: "A preclinical micro-computed tomography database including 3D whole body organ segmentations"
+    journal: "Scientific Data"
+    volume: 5
+    year: 2018
+    doi: 10.1038/sdata.2018.294

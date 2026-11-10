@@ -1,0 +1,19 @@
+Copyright (c) 2026 Husain Naqvi. All Rights Reserved.
+
+This repository and all of its contents (source code, trained models, figures,
+documentation, website and text) are the exclusive property of the author.
+
+No license is granted to copy, modify, distribute, sublicense, publish, train
+other models on, or otherwise use any part of this work, in whole or in part,
+for any purpose, without prior written permission from the author.
+
+Viewing this repository on GitHub does not grant any rights beyond those
+required by GitHub's Terms of Service.
+
+Academic reviewers (e.g. admissions committees, prospective supervisors and
+employers) may view and run the work for the sole purpose of evaluating the
+author. Source access can be requested via GitHub (Engr-HusainNaqvi).
+
+Third-party data: Rosenhain et al. (2018) whole-body murine micro-CT database (Scientific Data 5:180294, doi:10.1038/sdata.2018.294; figshare, CC BY 4.0)
+is used under its licence; the CT data and organ labels are NOT redistributed here,
+except three compact derived demo volumes in app/samples (CC BY 4.0, with attribution).

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MouseReg-AI Registration</title>
+<meta name="description" content="Multimodal 3D MRI to micro-CT registration for orthotopic breast-cancer mouse models: 0.69 mm error, zero folding, 2 s per animal. Husain Naqvi, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfbfd;--fg:#14161a;--muted:#5b6170;--card:#ffffff;--line:#e6e8ee;--accent:#2563eb;--accent-soft:#e8efff;--warn:#b45309}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1116;--fg:#e8eaf0;--muted:#9aa1b2;--card:#161a22;--line:#262c38;--accent:#6ea0ff;--accent-soft:#1b2640;--warn:#f59e0b}}
+:root[data-theme="dark"]{--bg:#0e1116;--fg:#e8eaf0;--muted:#9aa1b2;--card:#161a22;--line:#262c38;--accent:#6ea0ff;--accent-soft:#1b2640;--warn:#f59e0b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Inter,system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.kicker{color:var(--accent);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:.3em 0;font-weight:800}
+.lead{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:800px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{display:inline-block;padding:9px 16px;border-radius:8px;border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px;background:var(--card)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+section{padding:36px 0;border-bottom:1px solid var(--line)}
+h2{font-size:24px;margin:0 0 12px}
+h3{font-size:18px;margin:22px 0 8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat b{display:block;font-size:26px;color:var(--accent)}
+.stat span{color:var(--muted);font-size:13px}
+figure{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+figure img{width:100%;height:auto;display:block}
+figcaption{color:#555;font-size:13px;padding:6px 4px 0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+tr.best td{font-weight:700;color:var(--accent)}
+.note{background:var(--accent-soft);border-radius:10px;padding:14px 16px;margin:16px 0}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.chain span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px}
+.chain span.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.chain i{color:var(--muted);font-style:normal}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="kicker">Project 11 · Husain Naqvi · 2026</div>
+<h1>MouseReg-AI: MRI ↔ CT registration for orthotopic breast-cancer mouse models</h1>
+<p class="lead">This project asks which algorithm best maps T2w MRI onto micro-CT at the tumour, quickly and without folding tissue. It benchmarks five candidates and five hybrids on a virtual cohort built from 221 real micro-CT scans of 30 mice, with known ground-truth correspondence.</p>
+<div class="btns"><a class="btn primary" href="https://github.com/Engr-HusainNaqvi/MouseReg-AI">GitHub repository</a><a class="btn" href="https://github.com/Engr-HusainNaqvi/MouseReg-AI/blob/main/docs/FINDINGS.md">Findings write-up</a></div>
+</div></header>
+<main class="wrap">
+<section>
+<h2>Headline</h2>
+<div class="stats">
+<div class="stat"><b>0.69 mm</b><span>dense registration error (initial 3.4 mm), 58 held-out pairs</span></div>
+<div class="stat"><b>0.81 mm</b><span>error at the orthotopic tumour; tumour Dice 0.79 (all 58 test pairs)</span></div>
+<div class="stat"><b>0 %</b><span>folding: diffeomorphic by construction</span></div>
+<div class="stat"><b>2 s</b><span>per animal, vs 88 s for ANTs SyN and 6.5 min for B-spline FFD</span></div>
+<div class="stat"><b>p = 4e-9</b><span>more accurate than ANTs SyN (paired Wilcoxon, 29 scans)</span></div>
+</div>
+<div class="chain"><span>Real micro-CT</span><i>→</i><span>orthotopic tumour + synthetic T2w MRI</span><i>→</i><span>known misalignment</span><i>→</i><span>RigidNet + IO</span><i>→</i><span class="on">anatomy-aware DiffNet</span><i>→</i><span class="on">MIND-SSC refinement</span></div>
+<div class="note">Most of the accuracy comes from per-pair optimisation of modality-independent MIND-SSC features. The learned prior makes that optimisation 2.3× faster and consistently more accurate (better on 26 of 29 scans).</div>
+</section>
+<section>
+<h2>Results (30 paired test pairs)</h2>
+<div class="tbl"><table><thead><tr><th>Method</th><th>Dense TRE (mm)</th><th>Tumour TRE (mm)</th><th>Tumour Dice</th><th>Organ Dice</th><th>Folding %</th><th>Time (s)</th></tr></thead><tbody><tr><td>Initial (no registration)</td><td>3.52 ± 0.74</td><td>3.68 ± 1.30</td><td>0.257 ± 0.211</td><td>0.342 ± 0.100</td><td>–</td><td>–</td></tr><tr><td>Rigid MI (SimpleITK)</td><td>1.12 ± 0.38</td><td>1.26 ± 0.57</td><td>0.629 ± 0.199</td><td>0.696 ± 0.086</td><td>0.000 ± 0.000</td><td>2.8 ± 0.6</td></tr><tr><td>RigidNet (learned, 1 pass)</td><td>1.23 ± 0.37</td><td>1.41 ± 0.57</td><td>0.590 ± 0.207</td><td>0.668 ± 0.083</td><td>–</td><td>0.0 ± 0.2</td></tr><tr><td>RigidNet + MIND IO</td><td>1.08 ± 0.36</td><td>1.24 ± 0.53</td><td>0.635 ± 0.196</td><td>0.703 ± 0.080</td><td>–</td><td>0.8 ± 0.6</td></tr><tr><td>Rigid + B-spline FFD, MI (SimpleITK)</td><td>1.31 ± 0.50</td><td>0.85 ± 0.38</td><td>0.752 ± 0.145</td><td>0.652 ± 0.107</td><td>1.428 ± 2.873</td><td>390.1 ± 130.2</td></tr><tr><td>ANTs SyNRA (MI)</td><td>1.01 ± 0.44</td><td>1.01 ± 0.99</td><td>0.733 ± 0.184</td><td>0.732 ± 0.081</td><td>0.000 ± 0.000</td><td>88.3 ± 22.9</td></tr><tr><td>Rigid + MIND-SSC IO only (ConvexAdam-style)</td><td>0.74 ± 0.27</td><td>0.75 ± 0.45</td><td>0.800 ± 0.146</td><td>0.807 ± 0.057</td><td>0.000 ± 0.000</td><td>4.6 ± 0.7</td></tr><tr><td>DiffNet unsupervised (VoxelMorph-style)</td><td>0.92 ± 0.26</td><td>1.02 ± 0.45</td><td>0.759 ± 0.131</td><td>0.778 ± 0.049</td><td>0.000 ± 0.000</td><td>0.8 ± 0.6</td></tr><tr><td>DiffNet unsup + IO</td><td>0.71 ± 0.24</td><td>0.76 ± 0.44</td><td>0.805 ± 0.114</td><td>0.818 ± 0.042</td><td>0.000 ± 0.000</td><td>2.1 ± 0.6</td></tr><tr><td>DiffNet weakly sup. (+Dice)</td><td>0.90 ± 0.26</td><td>0.98 ± 0.41</td><td>0.781 ± 0.127</td><td>0.819 ± 0.046</td><td>0.000 ± 0.000</td><td>0.8 ± 0.6</td></tr><tr><td>DiffNet anatomy-aware hybrid (+Dice+GT flow)</td><td>0.85 ± 0.27</td><td>0.91 ± 0.39</td><td>0.777 ± 0.122</td><td>0.807 ± 0.051</td><td>0.000 ± 0.000</td><td>0.8 ± 0.6</td></tr><tr class="best"><td>Proposed: hybrid DiffNet + IO refinement</td><td>0.69 ± 0.24</td><td>0.72 ± 0.40</td><td>0.814 ± 0.102</td><td>0.823 ± 0.043</td><td>0.000 ± 0.000</td><td>2.1 ± 0.6</td></tr><tr><td>Oracle (interpolation ceiling)</td><td>0.00 ± 0.00</td><td>0.00 ± 0.00</td><td>0.974 ± 0.021</td><td>0.977 ± 0.012</td><td>–</td><td>–</td></tr></tbody></table></div>
+<p style="color:var(--muted);font-size:14px">The learned and IO methods ran on an A100 GPU; the classical methods ran on CPU with 2 threads. All values are mean ± SD over pairs.</p>
+</section>
+<section>
+<h2>Figures</h2>
+<figure><img loading="lazy" src="figures/fig1_data.png" alt="The virtual cohort: real micro-CT, organ labels with the implanted mammary-fat-pad tumour, synthetic T2w MRI, and the misaligned moving MRI."><figcaption>The virtual cohort: real micro-CT, organ labels with the implanted mammary-fat-pad tumour, synthetic T2w MRI, and the misaligned moving MRI.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig2_accuracy.png" alt="Dense TRE, tumour TRE and tumour Dice for all methods on 30 paired test pairs."><figcaption>Dense TRE, tumour TRE and tumour Dice for all methods on 30 paired test pairs.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig3_speed_accuracy.png" alt="Runtime vs. accuracy. Learned and IO methods on GPU, classical methods on CPU."><figcaption>Runtime vs. accuracy. Learned and IO methods on GPU, classical methods on CPU.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig4_organ_dice.png" alt="Mean Dice per structure after registration."><figcaption>Mean Dice per structure after registration.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig5_robustness.png" alt="Final error vs. initial misalignment."><figcaption>Final error vs. initial misalignment.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig6_training.png" alt="Validation curves: RigidNet and the three DiffNet variants."><figcaption>Validation curves: RigidNet and the three DiffNet variants.</figcaption></figure>
+<figure><img loading="lazy" src="figures/fig7_qualitative.png" alt="Held-out animals at the tumour slice: MRI before, after rigid, unsupervised DiffNet and the proposed pipeline, with the error and log-Jacobian maps."><figcaption>Held-out animals at the tumour slice: MRI before, after rigid, unsupervised DiffNet and the proposed pipeline, with the error and log-Jacobian maps.</figcaption></figure>
+</section>
+<section><p style="color:var(--muted);font-size:14px">This is a research prototype on simulated MRI; it is not validated for regulatory or clinical use. Micro-CT data: Rosenhain et al., Sci. Data 5:180294 (2018), CC BY 4.0. © 2026 Husain Naqvi. All Rights Reserved.</p></section>
+</main>
+</body>
+</html>
